@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="signup col-xs-12 col-sm-6 col-md-12 col-lg-12 rounded">
+    <!--form-->
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Thandaperu</th>
+            <th scope="col">Name</th>
+            <th scope="col">City</th>
+            <th scope="col">Street</th>
+            <th scope="col">Premises</th>
+            <th scope="col">Pincode</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Adhaar Number</th>
+            <th scope="col">Land Before</th>
+            <th scope="col">Land After</th>
+            <th scope="col">Thaluk Verification</th>
+            <th scope="col">Village Verification</th>
+            <th scope="col">Notification</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+          <tr>
+            <th scope="row">{{user.thandaperu}}</th>
+            <td>{{user.name}}</td>
+            <td>{{user.city}}</td>
+            <td>{{user.street}}</td>
+            <td>{{user.premises}}</td>
+            <td>{{user.pincode}}</td>
+            <td>{{user.phonenumber}}</td>
+            <td>{{user.adhaar}}</td>
+            <td>{{user.landBefore}}</td>
+            <td>{{user.landAfter}}</td>
+            <td>{{user.thalukVerification}}</td>
+            <td>{{user.villageVerification}}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    
+</div>  
+
+{% endblock %}
