@@ -28,37 +28,38 @@
     <table class="table table-bordered table-striped mb-0 " style="border-radius:25px ; width: 90%; margin-left: 5%;">
         <thead class="thead-light">
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">Thandaperu</th>
-            <th scope="col">Name</th>
-            <th scope="col">City</th>
-            <th scope="col">Street</th>
-            <th scope="col">Premises</th>
+            <th scope="col">Land id</th>
+            <th scope="col">Location</th>
             <th scope="col">Pincode</th>
-            <th scope="col">Phone number</th>
-            <th scope="col">Adhar number</th>
+            <th scope="col">Land Size</th>
             <th scope="col">Land Before</th>
             <th scope="col">Land After</th>
+            <th scope="col">Thandaperu</th>
             <th scope="col">Verification</th>
         </tr>
         </thead>
         <tbody>
-
           {% for user in users %}
           <tr>
             <th scope="row">{{user.id}}</th>
-            <td>{{user.thandaperu}}</td>
-            <td>{{user.name}}</td>
-            <td>{{user.city}}</td>
-            <td>{{user.street}}</td>
-            <td>{{user.premises}}</td>
+            <td>{{user.location}}</td>
             <td>{{user.pincode}}</td>
-            <td>{{user.phonenumber}}</td>
-            <td>{{user.adhaar}}</td>
+            <td>{{user.landSize}}</td>
             <td>{{user.landBefore}}</td>
             <td>{{user.landAfter}}</td>
-            <td><a href="villageVerify" type="button" class="btn btn-success">Accept</a>
-              <a href="villageDismiss" type="button" class="btn btn-danger">Dismiss</a></td>
+            <td>{{user.thandaperu}}</td>
+            <td>
+              <form action="villageVerify" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{user.id}}">
+                <input type="hidden" name="landAfter" value="{{user.landAfter}}">
+                <button type="submit" class="btn btn-success">Accept</button>
+              </form>
+              <form action="villageDismiss" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{user.id}}">
+                <button type="submit" class="btn btn-danger">Dismiss</button>
+              </form>
           </tr>
           {% endfor %}
      

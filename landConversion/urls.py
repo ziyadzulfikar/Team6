@@ -7,6 +7,9 @@ urlpatterns = [
     path('', views.landHome, name = 'landHome'),
     path('adminView', views.admin, name = 'admin'),
     path('addUser', views.addUser, name = 'addUser'),
+    path('addLand', views.addLand, name = 'addLand'),
+    path('pay', views.pay, name = 'pay'),
+    path('addLocation', views.addLocation, name = 'addLocation'),
     path('userlist', views.userlist, name = 'userlist'),
     path('addThaluk', views.addThaluk, name = 'addThaluk'),
     path('addVillage', views.addVillage, name = 'addVillage'),
@@ -18,4 +21,6 @@ urlpatterns = [
     path('villageOffice', views.villageOffice, name = 'villageOffice'),
     path('villageVerify', views.villageVerify, name = 'villageVerify'),
     path('villageDismiss', views.villageDismiss, name = 'villageDismiss'),
+    path('thalukAdmin', views.thalukAdmin, name = 'thalukAdmin'),
+    path('villageAdmin', views.villageAdmin, name = 'villageAdmin'),
 ]

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
@@ -7,25 +8,27 @@
     <nav class="navbar navbar-light">
         <div class="container-fluid">
           <a class="navbar-brand"><b> Land conversion </b></a>
-            <button class="btn btn-outline-success" type="submit">Contact</button>
         </div>
       </nav>
 </div>
 
 <!--picture--> 
 <div class="Government_of_Kerala_Logo  ">
-    <img src="Government_of_Kerala_Logo.png" alt="Government_of_Kerala_Logo">
+    <img src="{% static 'Government_of_Kerala_Logo.png' %}" alt="Government_of_Kerala_Logo">
 </div>
-
-<<<<<<< Updated upstream
+<center>
+    {% for message  in messages %}
+    <div class="container">
+      <p style="font-size: larger;"><strong>{{message}}</strong></p>
+    </div>
+    {% endfor %}
+  </center>
     <form action="userAuth" method="post">
        {% csrf_token %}
-=======
 <!--form-->     
 <div class="signup rounded">
     <form class="container rounded">
        
->>>>>>> Stashed changes
         <div class="form-group">
             <label for="inputAddress"></label>
             <input type="text" name="thandaperu" class="form-control" id="inputAddress" placeholder="Thandaperu">

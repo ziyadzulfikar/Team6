@@ -1,14 +1,47 @@
-.signup{
-    color: rgb(0, 0, 0);
-    width: 30rem;
-    height: 40rem;
-    background-color: #f6f9fc;
-    margin : 0 auto;
-    margin-top: 1rem;
-    margin-bottom: 2rem;
+.Land_conversion{
+    margin-top: 0rem;
+    font-size: 2rem;
+    height: 4rem;
+    width: 95rem;
+    background-color: rgb(103, 103, 103);
 }
+.Government_of_Kerala_Logo{
+    margin-top: 10rem;
+    height: 18rem;
+    width: 30rem;
+    float: left;
+    margin-left: 10rem;   
+}
+.signup{
+    height: 15rem;
+    width: 25rem;
+    background-color: white;
+    float: right;
+    margin-top: 10rem;
+}
+
 .Revenue_eService{
-    margin-left: 35rem;
     color: black;
     font-size: 2rem;
 }
+#accordion{
+    margin-top:10rem ;
+    margin-left: 10rem;
+    margin-right: 10rem;
+}
+.dropdown{
+    background-color:aliceblue ;
+}
+button, input, optgroup, select, textarea {
+    margin: 0;
+    font-family: inherit;
+    font-size: medium;
+    background-color: #cde1f3;
+    line-height: inherit;
+    margin-top: 13px;
+    margin-left: 111px;
+}
+
+validated .form-check-input:valid~.form-check-label {
+        color: #1b1d1c;
+    }

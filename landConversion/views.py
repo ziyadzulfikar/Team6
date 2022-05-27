@@ -1,6 +1,8 @@
 from django.shortcuts import render,redirect
-
-from landConversion.models import thaluk, user, village
+import random
+import string
+from landConversion.models import land, thaluk,user, village
+from django.contrib import messages
 
 # Create your views here.
 
@@ -10,21 +12,41 @@ def landHome(request):
 def admin(request):
     return render(request, 'admin.html')
 
+def thalukAdmin(request):
+    return render(request, 'addTaluk.html')
+
+def villageAdmin(request):
+    return render(request, 'addVillage.html')
+
+def addLand(request):
+    return render(request, 'addLand.html')
+
+def pay(request):
+    return render(request, 'payment.html')
+
 def addUser(request):
     if(request.method == 'GET'):    
-            thandaperu = request.GET["thandaperu"]
+            id = ''.join(random.choices(string.digits, k=8))
+            thandaperu = id
             name = request.GET["name"]
-            city = request.GET["city"]
-            street = request.GET["street"]
-            premises = request.GET["premises"]
+            location = request.GET["location"]
             pincode = request.GET["pincode"]
-            phone = request.GET["phone"]
+            phone = request.GET["phonenumber"]
             adhaar = request.GET["adhaar"]
-            land = request.GET["land"]
-
-            userAdd = user.objects.create(thandaperu=thandaperu, name=name, city=city, street=street, premises=premises, pincode=pincode, phonenumber=phone, adhaar=adhaar, landBefore=land)
+            userAdd = user.objects.create(thandaperu=thandaperu, name=name, location=location, pincode=pincode, phonenumber=phone, adhaar=adhaar)
             userAdd.save()
-            return redirect('/')
+            return render(request, 'successful.html')
+
+def addLocation(request):
+    if(request.method == 'GET'):    
+        location = request.GET["location"]
+        pincode = request.GET["pincode"]
+        landSize = request.GET["landSize"]
+        landBefore = request.GET["landBefore"]
+        thandaperu = request.GET["thandaperu"]
+        landAdd = land.objects.create(location=location, pincode=pincode, landSize=landSize, landBefore=landBefore, thandaperu=thandaperu)
+        landAdd.save()
+        return render(request, 'successful.html')
 
 def userlist(request):
     users = user.objects.all()
@@ -64,9 +86,11 @@ def userAuth(request):
         verify = user.objects.filter(thandaperu=thandaperu, adhaar=adhaar)
 
         if(verify):
-            users = user.objects.filter(thandaperu=thandaperu)
+            users = land.objects.filter(thandaperu=thandaperu)
             return render(request, 'land.html', {'users':users})
         else:
+            messages.info(request,'Username already taken')
+            print("Invalid Thandaperu or Adhaar Number")
             return redirect('/')
 
 def landTypeChange(request):
@@ -74,36 +98,46 @@ def landTypeChange(request):
         fieldtype = request.POST["fieldtype"]
         fieldcause = request.POST["fieldcause"]
         landId = request.POST["landId"]
+        landSize = request.POST["landSize"]
 
-        user.objects.filter(id = landId).update(landAfter=fieldtype, thalukVerification="waiting", villageVerification="waiting thaluk")
-
-        return render(request, 'successful.html')
+        if(int(landSize)<10):
+            land.objects.filter(id = landId).update(landAfter=fieldtype, thalukVerification="waiting", villageVerification="waiting thaluk")
+            return render(request, 'successful.html')
+        else:
+            return render(request, 'payment.html')
 
 def thalukOffice(request):
-    users = user.objects.filter(thalukVerification = "waiting")
+    users = land.objects.filter(thalukVerification = "waiting")
     return render(request, 'Thaluk.html',{'users':users})
 
 def thalukVerified(request):
-    user.objects.filter(thalukVerification = "waiting").update(thalukVerification="verified", villageVerification="waiting")
-    return render(request, 'successful.html')
+    if(request.method == 'POST'):
+        id = request.POST["id"]
+        land.objects.filter(id = id, thalukVerification = "waiting").update(thalukVerification="verified", villageVerification="waiting")
+        return render(request, 'successful.html')
 
 def thalukDismiss(request):
-    user.objects.filter(thalukVerification = "waiting").update(thalukVerification="dismiss", villageVerification="dismiss")
-    return render(request, 'successful.html')
+    if(request.method == 'POST'):
+        id = request.POST["id"]
+        land.objects.filter(id = id, thalukVerification = "waiting").update(thalukVerification="dismiss", villageVerification="dismiss")
+        return render(request, 'successful.html')
 
 def villageOffice(request):
-    users = user.objects.filter(villageVerification = "waiting")
+    users = land.objects.filter(villageVerification = "waiting")
     return render(request, 'village.html',{'users':users})
 
 def villageVerify(request):
-    user.objects.filter(villageVerification = "waiting").update(villageVerification="verified")
-    user.objects.filter(villageVerification = "waiting").update(villageVerification="verified")
-
-    return render(request, 'successful.html')
+    if(request.method == 'POST'):
+        id = request.POST["id"]
+        landAfter = request.POST["landAfter"]
+        land.objects.filter(id = id, villageVerification = "waiting").update(landBefore=landAfter, landAfter="", villageVerification="verified", notification = True)
+        return render(request, 'successful.html')
 
 def villageDismiss(request):
-    user.objects.filter(villageVerification = "waiting").update(villageVerification="dismiss")
-    return render(request, 'successful.html')
+    if(request.method == 'POST'):
+        id = request.POST["id"]
+        land.objects.filter(id = id, villageVerification = "waiting").update(villageVerification="dismiss")
+        return render(request, 'successful.html')
 
 
 
