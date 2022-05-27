@@ -1,0 +1,23 @@
+
+.Land_conversion{
+    margin-top: 0rem;
+    font-size: 2rem;
+    height: 4rem;
+    width: 95rem;
+    background-color: rgb(103, 103, 103);
+}
+.Government_of_Kerala_Logo{
+    margin-top: 10rem;
+    height: 18rem;
+    width: 30rem;
+    float: left;
+    margin-left: 10rem;   
+}
+.signup{
+    height: 15rem;
+    width: 25rem;
+    background-color: white;
+    float: right;
+    margin-top: 10rem;
+    margin-right: 25rem;
+}
