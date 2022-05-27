@@ -28,6 +28,7 @@ Online land Conversion website developed by HTML, Javascript, CSS ,and Django.
 - Manager panel
   - Verification process by thaluk 
   - Verification process by Village 
+
    
 ## Team members
 
@@ -41,7 +42,9 @@ Online land Conversion website developed by HTML, Javascript, CSS ,and Django.
 
 https://ziyadzulfikar.github.io/Team6/
  
+## Project Demo
 
+https://drive.google.com/file/d/1BL0F5DxwiH7tLf253n0QuAcw5fTnlRCx/view?usp=sharing
 
 ## How to configure
 
