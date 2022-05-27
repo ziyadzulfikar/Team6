@@ -18,7 +18,8 @@ button, input, optgroup, select, textarea {
     background-color: #cde1f3;
     line-height: inherit;
     margin-top: 13px;
-    margin-left: 111px;}
+    margin-left: 111px;
+}
 
 validated .form-check-input:valid~.form-check-label {
         color: #1b1d1c;
