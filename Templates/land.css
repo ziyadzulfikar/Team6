@@ -1,0 +1,25 @@
+.Revenue_eService{
+    
+    color: black;
+    font-size: 2rem;
+}
+#accordion{
+    margin-top:10rem ;
+    margin-left: 10rem;
+    margin-right: 10rem;
+}
+.dropdown{
+    backgrond-color:aliceblue ;
+}
+utton, input, optgroup, select, textarea {
+    margin: 0;
+    font-family: inherit;
+    font-size: medium;
+    background-color: #cde1f3;
+    line-height: inherit;
+    margin-top: 13px;
+    margin-left: 111px;}
+
+validated .form-check-input:valid~.form-check-label {
+        color: #1b1d1c;
+    }
