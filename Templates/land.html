@@ -15,149 +15,60 @@
   </div>  
   
       <div id="accordion" >
+        {% for user in users %}
         <div class="card">
           <div class="card-header" id="headingOne">
             <h5 class="mb-0">
               <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                Land 1
+                {{user.street}}
               </button>
             </h5>
           </div>
       
           <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-            <form class="was-validated" action="">
+            <form class="was-validated" method="POST" action="landTypeChange">
+              {% csrf_token %}
+              <h5>Current Field Type</h5>
+              <p>{{user.landBefore}}</p>
               <div class="form-group">
-                  <select class="convert" required>
+                  <select class="convert" name="fieldtype" required>
                     <option value="">Convert To</option>
-                    <option value="1">Feild</option>
-                    <option value="2">Industry</option>
-                    <option value="3">Residential</option>
+                    <option value="Field">Field</option>
+                    <option value="Industry">Industry</option>
+                    <option value="Residential">Residential</option>
                   </select>
                   
                 </div>
+
+                <input type="text" name="landId" value="{{user.id}}" hidden>
             
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                  <input name="fieldcause" class="form-check-input" type="radio" value="Agricultural Development" id="defaultCheck1">
                   <label class="form-check-label" for="defaultCheck1">
                     Agricultural Development
                   </label>
                 </div>
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <input name="fieldcause" class="form-check-input" type="radio" value="Cause of natural disasters" id="defaultCheck1">
                     <label class="form-check-label" for="defaultCheck1">
                       Cause of natural disasters
                     </label>
                   </div>
                   
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <input name="fieldcause" class="form-check-input" type="radio" value="Industrial Development" id="defaultCheck1">
                     <label class="form-check-label" for="defaultCheck1">
-                      Industriyal Development
+                      Industrial Development
                     </label>
                   </div>
               
-              <button class="btn btn-primary" type="submit">Submit</button>
+                <button class="btn btn-primary" type="submit">Submit</button>
               
              
             </form>
           </div>
         </div>
-        <div class="card">
-          <div class="card-header" id="headingTwo">
-            <h5 class="mb-0">
-              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                Land 2
-              </button>
-            </h5>
-          </div>
-          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-            <form class="was-validated" action=" ">
-              <div class="form-group">
-                  <select class="convert" required>
-                    <option value="">Convert To</option>
-                    <option value="1">Feild</option>
-                    <option value="2">Industry</option>
-                    <option value="3">Residential</option>
-                  </select>
-                  
-                </div>
-            
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                  <label class="form-check-label" for="defaultCheck1">
-                    Agricultural Development
-                  </label>
-                </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                      Cause of natural disasters
-                    </label>
-                  </div>
-                  
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                      Industriyal Development
-                    </label>
-                  </div>
-              
-              <button class="btn btn-primary" type="submit">Submit</button>
-              
-             
-            </form> 
-           
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-header" id="headingTwo">
-            <h5 class="mb-0">
-              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                Land 3
-              </button>
-            </h5>
-          </div>
-          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-            <form class="was-validated" action=" ">
-              <div class="form-group">
-                  <select class="convert" required>
-                    <option value="">Convert To</option>
-                    <option value="1">Feild</option>
-                    <option value="2">Industry</option>
-                    <option value="3">Residential</option>
-                  </select>
-                  
-                </div>
-            
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                  <label class="form-check-label" for="defaultCheck1">
-                    Agricultural Development
-                  </label>
-                </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                      Cause of natural disasters
-                    </label>
-                  </div>
-                  
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                      Industriyal Development
-                    </label>
-                  </div>
-              
-              <button  href="submit.html" class="btn btn-primary" type="submit">Submit</button>
-              
-             
-            </form> 
-           
-          </div>
-        </div>
-          </div>
-        </div>
+        {% endfor %}
       </div>
 
         

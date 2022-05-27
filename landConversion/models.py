@@ -17,3 +17,19 @@ class user(models.Model):
     thalukVerification = models.CharField(max_length=100)
     villageVerification = models.CharField(max_length=100)
     notification = BooleanField(default=False)
+
+class thaluk(models.Model):
+    name = models.CharField(max_length=100)
+    phonenumber = models.BigIntegerField()
+    place = models.CharField(max_length=100)
+    pincode = models.BigIntegerField()
+    adhaar = models.BigIntegerField()
+    password = models.TextField()
+
+class village(models.Model):
+    name = models.CharField(max_length=100)
+    phonenumber = models.BigIntegerField()
+    place = models.CharField(max_length=100)
+    pincode = models.BigIntegerField()
+    adhaar = models.BigIntegerField()
+    password = models.TextField()
