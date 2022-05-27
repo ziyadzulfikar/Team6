@@ -9,9 +9,9 @@
     margin-right: 10rem;
 }
 .dropdown{
-    backgrond-color:aliceblue ;
+    background-color:aliceblue ;
 }
-utton, input, optgroup, select, textarea {
+button, input, optgroup, select, textarea {
     margin: 0;
     font-family: inherit;
     font-size: medium;
